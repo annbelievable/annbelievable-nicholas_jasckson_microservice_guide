@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/annbelievable/nicholas_jasckson_microservice_guide/product-api/data"
+	"github.com/annbelievable/nicholas_jackson_microservice_guide/product-api/data"
 )
 
 // MiddlewareValidateProduct validates the product in the request and calls next if ok
