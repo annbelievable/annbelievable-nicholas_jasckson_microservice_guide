@@ -10,9 +10,9 @@ import (
 // Update a product details
 //
 // responses:
-// 201: noContentResponse
-// 404: errorResponse
-// 501: errorResponse
+// 	201: noContentResponse
+// 	404: errorResponse
+// 	501: errorResponse
 
 // Delete handles DELETE requests and removes items from the database
 func (p *Products) Delete(rw http.ResponseWriter, r *http.Request) {

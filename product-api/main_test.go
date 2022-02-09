@@ -19,6 +19,6 @@ func TestOurClient(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	fmt.Printf("%#v", prod.GetPayLoad()[0])
+	fmt.Printf("%#v", prod.GetPayload()[0])
 	t.Fail()
 }

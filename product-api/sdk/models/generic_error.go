@@ -6,11 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
+
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // GenericError GenericError GenericError GenericError is a generic error message returned by a server
+//
 // swagger:model GenericError
 type GenericError struct {
 
@@ -20,6 +23,11 @@ type GenericError struct {
 
 // Validate validates this generic error
 func (m *GenericError) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this generic error based on context it is used
+func (m *GenericError) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

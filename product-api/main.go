@@ -23,7 +23,7 @@ func main() {
 
 	env.Parse()
 
-	l := log.New(os.Stdout, "products-api", log.LstdFlags)
+	l := log.New(os.Stdout, "products-api ", log.LstdFlags)
 	v := data.NewValidation()
 
 	// create the handlers
@@ -74,7 +74,7 @@ func main() {
 
 		err := s.ListenAndServe()
 		if err != nil {
-			l.Printf("Error starting new server: %s\n", err)
+			l.Printf("Error starting server: %s\n", err)
 			os.Exit(1)
 		}
 	}()

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	"github.com/nicholasjackson/building-microservices-youtube/product-api/sdk/models"
+	"github.com/annbelievable/nicholas_jackson_microservice_guide/product-api/sdk/models"
 )
 
 // ListSingleProductReader is a Reader for the ListSingleProduct structure.
@@ -36,9 +35,8 @@ func (o *ListSingleProductReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -47,7 +45,7 @@ func NewListSingleProductOK() *ListSingleProductOK {
 	return &ListSingleProductOK{}
 }
 
-/*ListSingleProductOK handles this case with default header values.
+/* ListSingleProductOK describes a response with status code 200, with default header values.
 
 Data structure representing a single product
 */
@@ -58,7 +56,6 @@ type ListSingleProductOK struct {
 func (o *ListSingleProductOK) Error() string {
 	return fmt.Sprintf("[GET /products/{id}][%d] listSingleProductOK  %+v", 200, o.Payload)
 }
-
 func (o *ListSingleProductOK) GetPayload() *models.Product {
 	return o.Payload
 }
@@ -80,7 +77,7 @@ func NewListSingleProductNotFound() *ListSingleProductNotFound {
 	return &ListSingleProductNotFound{}
 }
 
-/*ListSingleProductNotFound handles this case with default header values.
+/* ListSingleProductNotFound describes a response with status code 404, with default header values.
 
 Generic error message returned as a string
 */
@@ -91,7 +88,6 @@ type ListSingleProductNotFound struct {
 func (o *ListSingleProductNotFound) Error() string {
 	return fmt.Sprintf("[GET /products/{id}][%d] listSingleProductNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ListSingleProductNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

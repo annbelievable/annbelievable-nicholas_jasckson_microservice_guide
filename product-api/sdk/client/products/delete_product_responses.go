@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	"github.com/nicholasjackson/building-microservices-youtube/product-api/sdk/models"
+	"github.com/annbelievable/nicholas_jackson_microservice_guide/product-api/sdk/models"
 )
 
 // DeleteProductReader is a Reader for the DeleteProduct structure.
@@ -42,9 +41,8 @@ func (o *DeleteProductReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -53,7 +51,7 @@ func NewDeleteProductCreated() *DeleteProductCreated {
 	return &DeleteProductCreated{}
 }
 
-/*DeleteProductCreated handles this case with default header values.
+/* DeleteProductCreated describes a response with status code 201, with default header values.
 
 No content is returned by this API endpoint
 */
@@ -74,7 +72,7 @@ func NewDeleteProductNotFound() *DeleteProductNotFound {
 	return &DeleteProductNotFound{}
 }
 
-/*DeleteProductNotFound handles this case with default header values.
+/* DeleteProductNotFound describes a response with status code 404, with default header values.
 
 Generic error message returned as a string
 */
@@ -85,7 +83,6 @@ type DeleteProductNotFound struct {
 func (o *DeleteProductNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /products/{id}][%d] deleteProductNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteProductNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -107,7 +104,7 @@ func NewDeleteProductNotImplemented() *DeleteProductNotImplemented {
 	return &DeleteProductNotImplemented{}
 }
 
-/*DeleteProductNotImplemented handles this case with default header values.
+/* DeleteProductNotImplemented describes a response with status code 501, with default header values.
 
 Generic error message returned as a string
 */
@@ -118,7 +115,6 @@ type DeleteProductNotImplemented struct {
 func (o *DeleteProductNotImplemented) Error() string {
 	return fmt.Sprintf("[DELETE /products/{id}][%d] deleteProductNotImplemented  %+v", 501, o.Payload)
 }
-
 func (o *DeleteProductNotImplemented) GetPayload() *models.GenericError {
 	return o.Payload
 }

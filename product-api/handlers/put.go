@@ -10,9 +10,9 @@ import (
 // Update a product details
 //
 // responses:
-// 201: noContentResponse
-// 404: errorResponse
-// 422: errorValidation
+// 	201: noContentResponse
+//  404: errorResponse
+//  422: errorValidation
 
 // Update handles PUT requests to update products
 func (p *Products) Update(rw http.ResponseWriter, r *http.Request) {
@@ -20,7 +20,7 @@ func (p *Products) Update(rw http.ResponseWriter, r *http.Request) {
 
 	// fetch the product from the context
 	prod := r.Context().Value(KeyProduct{}).(data.Product)
-	p.l.Println("[DEBUG] Updating record id:", prod.ID)
+	p.l.Println("[DEBUG] Updating record id", prod.ID)
 
 	err := data.UpdateProduct(prod)
 	if err == data.ErrProductNotFound {
@@ -31,5 +31,6 @@ func (p *Products) Update(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// write the no content success header
 	rw.WriteHeader(http.StatusNoContent)
 }

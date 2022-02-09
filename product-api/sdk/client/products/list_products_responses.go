@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	"github.com/nicholasjackson/building-microservices-youtube/product-api/sdk/models"
+	"github.com/annbelievable/nicholas_jackson_microservice_guide/product-api/sdk/models"
 )
 
 // ListProductsReader is a Reader for the ListProducts structure.
@@ -30,9 +29,8 @@ func (o *ListProductsReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -41,7 +39,7 @@ func NewListProductsOK() *ListProductsOK {
 	return &ListProductsOK{}
 }
 
-/*ListProductsOK handles this case with default header values.
+/* ListProductsOK describes a response with status code 200, with default header values.
 
 A list of products
 */
@@ -52,7 +50,6 @@ type ListProductsOK struct {
 func (o *ListProductsOK) Error() string {
 	return fmt.Sprintf("[GET /products][%d] listProductsOK  %+v", 200, o.Payload)
 }
-
 func (o *ListProductsOK) GetPayload() []*models.Product {
 	return o.Payload
 }

@@ -24,7 +24,7 @@ type Product struct {
 
 	// the description for this product
 	//
-	// required: true
+	// required: false
 	// max length: 10000
 	Description string `json:"description"`
 

@@ -25,17 +25,20 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateProduct(params *CreateProductParams) (*CreateProductOK, error)
+	CreateProduct(params *CreateProductParams, opts ...ClientOption) (*CreateProductOK, error)
 
-	DeleteProduct(params *DeleteProductParams) (*DeleteProductCreated, error)
+	DeleteProduct(params *DeleteProductParams, opts ...ClientOption) (*DeleteProductCreated, error)
 
-	ListProducts(params *ListProductsParams) (*ListProductsOK, error)
+	ListProducts(params *ListProductsParams, opts ...ClientOption) (*ListProductsOK, error)
 
-	ListSingleProduct(params *ListSingleProductParams) (*ListSingleProductOK, error)
+	ListSingleProduct(params *ListSingleProductParams, opts ...ClientOption) (*ListSingleProductOK, error)
 
-	UpdateProduct(params *UpdateProductParams) (*UpdateProductCreated, error)
+	UpdateProduct(params *UpdateProductParams, opts ...ClientOption) (*UpdateProductCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -43,13 +46,12 @@ type ClientService interface {
 /*
   CreateProduct Create a new product
 */
-func (a *Client) CreateProduct(params *CreateProductParams) (*CreateProductOK, error) {
+func (a *Client) CreateProduct(params *CreateProductParams, opts ...ClientOption) (*CreateProductOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateProductParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createProduct",
 		Method:             "POST",
 		PathPattern:        "/products",
@@ -60,7 +62,12 @@ func (a *Client) CreateProduct(params *CreateProductParams) (*CreateProductOK, e
 		Reader:             &CreateProductReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -77,13 +84,12 @@ func (a *Client) CreateProduct(params *CreateProductParams) (*CreateProductOK, e
 /*
   DeleteProduct Update a products details
 */
-func (a *Client) DeleteProduct(params *DeleteProductParams) (*DeleteProductCreated, error) {
+func (a *Client) DeleteProduct(params *DeleteProductParams, opts ...ClientOption) (*DeleteProductCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteProductParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteProduct",
 		Method:             "DELETE",
 		PathPattern:        "/products/{id}",
@@ -94,7 +100,12 @@ func (a *Client) DeleteProduct(params *DeleteProductParams) (*DeleteProductCreat
 		Reader:             &DeleteProductReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -111,13 +122,12 @@ func (a *Client) DeleteProduct(params *DeleteProductParams) (*DeleteProductCreat
 /*
   ListProducts Return a list of products from the database
 */
-func (a *Client) ListProducts(params *ListProductsParams) (*ListProductsOK, error) {
+func (a *Client) ListProducts(params *ListProductsParams, opts ...ClientOption) (*ListProductsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListProductsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listProducts",
 		Method:             "GET",
 		PathPattern:        "/products",
@@ -128,7 +138,12 @@ func (a *Client) ListProducts(params *ListProductsParams) (*ListProductsOK, erro
 		Reader:             &ListProductsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -145,13 +160,12 @@ func (a *Client) ListProducts(params *ListProductsParams) (*ListProductsOK, erro
 /*
   ListSingleProduct Return a list of products from the database
 */
-func (a *Client) ListSingleProduct(params *ListSingleProductParams) (*ListSingleProductOK, error) {
+func (a *Client) ListSingleProduct(params *ListSingleProductParams, opts ...ClientOption) (*ListSingleProductOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListSingleProductParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listSingleProduct",
 		Method:             "GET",
 		PathPattern:        "/products/{id}",
@@ -162,7 +176,12 @@ func (a *Client) ListSingleProduct(params *ListSingleProductParams) (*ListSingle
 		Reader:             &ListSingleProductReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -179,13 +198,12 @@ func (a *Client) ListSingleProduct(params *ListSingleProductParams) (*ListSingle
 /*
   UpdateProduct Update a products details
 */
-func (a *Client) UpdateProduct(params *UpdateProductParams) (*UpdateProductCreated, error) {
+func (a *Client) UpdateProduct(params *UpdateProductParams, opts ...ClientOption) (*UpdateProductCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateProductParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateProduct",
 		Method:             "PUT",
 		PathPattern:        "/products",
@@ -196,7 +214,12 @@ func (a *Client) UpdateProduct(params *UpdateProductParams) (*UpdateProductCreat
 		Reader:             &UpdateProductReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

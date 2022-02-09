@@ -2,15 +2,15 @@
 //
 // Documentation for Product API
 //
-// 	Schemes: http
-// 	BasePath: /
-// 	Version: 1.0.0
+//     Schemes: http
+//     BasePath: /
+//     Version: 1.0.0
 //
-// 	Consumes:
-// 	- application/json
+//     Consumes:
+//     - application/json
 //
-// 	Produces:
-// 	- application/json
+//     Produces:
+//     - application/json
 //
 // swagger:meta
 package handlers
@@ -53,7 +53,7 @@ type productResponseWrapper struct {
 	Body data.Product
 }
 
-// No content is returned by this API result
+// No content is returned by this API endpoint
 // swagger:response noContentResponse
 type noContentResponseWrapper struct {
 }

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	"github.com/nicholasjackson/building-microservices-youtube/product-api/sdk/models"
+	"github.com/annbelievable/nicholas_jackson_microservice_guide/product-api/sdk/models"
 )
 
 // CreateProductReader is a Reader for the CreateProduct structure.
@@ -42,9 +41,8 @@ func (o *CreateProductReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -53,7 +51,7 @@ func NewCreateProductOK() *CreateProductOK {
 	return &CreateProductOK{}
 }
 
-/*CreateProductOK handles this case with default header values.
+/* CreateProductOK describes a response with status code 200, with default header values.
 
 Data structure representing a single product
 */
@@ -64,7 +62,6 @@ type CreateProductOK struct {
 func (o *CreateProductOK) Error() string {
 	return fmt.Sprintf("[POST /products][%d] createProductOK  %+v", 200, o.Payload)
 }
-
 func (o *CreateProductOK) GetPayload() *models.Product {
 	return o.Payload
 }
@@ -86,7 +83,7 @@ func NewCreateProductUnprocessableEntity() *CreateProductUnprocessableEntity {
 	return &CreateProductUnprocessableEntity{}
 }
 
-/*CreateProductUnprocessableEntity handles this case with default header values.
+/* CreateProductUnprocessableEntity describes a response with status code 422, with default header values.
 
 Validation errors defined as an array of strings
 */
@@ -97,7 +94,6 @@ type CreateProductUnprocessableEntity struct {
 func (o *CreateProductUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /products][%d] createProductUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateProductUnprocessableEntity) GetPayload() *models.ValidationError {
 	return o.Payload
 }
@@ -119,7 +115,7 @@ func NewCreateProductNotImplemented() *CreateProductNotImplemented {
 	return &CreateProductNotImplemented{}
 }
 
-/*CreateProductNotImplemented handles this case with default header values.
+/* CreateProductNotImplemented describes a response with status code 501, with default header values.
 
 Generic error message returned as a string
 */
@@ -130,7 +126,6 @@ type CreateProductNotImplemented struct {
 func (o *CreateProductNotImplemented) Error() string {
 	return fmt.Sprintf("[POST /products][%d] createProductNotImplemented  %+v", 501, o.Payload)
 }
-
 func (o *CreateProductNotImplemented) GetPayload() *models.GenericError {
 	return o.Payload
 }

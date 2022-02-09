@@ -6,15 +6,14 @@ package client
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	httptransport "github.com/go-openapi/runtime/client"
-
 	"github.com/go-openapi/runtime"
+	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/nicholasjackson/building-microservices-youtube/product-api/sdk/client/products"
+	"github.com/annbelievable/nicholas_jackson_microservice_guide/product-api/sdk/client/products"
 )
 
-// Default product HTTP client.
+// Default product API HTTP client.
 var Default = NewHTTPClient(nil)
 
 const (
@@ -29,14 +28,14 @@ const (
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
 var DefaultSchemes = []string{"http"}
 
-// NewHTTPClient creates a new product HTTP client.
-func NewHTTPClient(formats strfmt.Registry) *Product {
+// NewHTTPClient creates a new product API HTTP client.
+func NewHTTPClient(formats strfmt.Registry) *ProductAPI {
 	return NewHTTPClientWithConfig(formats, nil)
 }
 
-// NewHTTPClientWithConfig creates a new product HTTP client,
+// NewHTTPClientWithConfig creates a new product API HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Product {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *ProductAPI {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -47,14 +46,14 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Pro
 	return New(transport, formats)
 }
 
-// New creates a new product client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Product {
+// New creates a new product API client
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *ProductAPI {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
 	}
 
-	cli := new(Product)
+	cli := new(ProductAPI)
 	cli.Transport = transport
 	cli.Products = products.New(transport, formats)
 	return cli
@@ -99,15 +98,15 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 	return cfg
 }
 
-// Product is a client for product
-type Product struct {
+// ProductAPI is a client for product API
+type ProductAPI struct {
 	Products products.ClientService
 
 	Transport runtime.ClientTransport
 }
 
 // SetTransport changes the transport on the client and all its subresources
-func (c *Product) SetTransport(transport runtime.ClientTransport) {
+func (c *ProductAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Products.SetTransport(transport)
 }
